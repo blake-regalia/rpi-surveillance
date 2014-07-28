@@ -58,11 +58,19 @@ $(document).ready(function() {
 				// image loaded
 				.load(function() {
 
-					// remove patience label
-					$('#patience').remove();
+					// did it really load?
+					setTimeout(function() {
 
-					// show controls
-					$('#controls').show();
+						// did not really load!
+						if(!q_stream.get(0).naturalWidth) return q_stream.attr('src', json.src);
+
+						// remove patience label
+						$('#patience').remove();
+
+						// show controls
+						$('#controls').show();
+
+					}, 25);
 				});
 
 			// show the stage

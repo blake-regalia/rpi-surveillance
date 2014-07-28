@@ -30,16 +30,17 @@ var motion_pid;
 var motion_conf;
 
 
-var H_CONFIG_MODE_RECORD = {
-	// "width": "576",
-	// "height": "324",
-	"quality": "15",
-	"ffmpeg_output_movies": "on",
-};
+// var H_CONFIG_MODE_RECORD = {
+// 	// "width": "576",
+// 	// "height": "324",
+// 	"quality": "15",
+// 	"ffmpeg_output_movies": "on",
+// };
 
 var H_CONFIG_MODE_STREAM = {
 	"width": "1024",
 	"height": "576",
+	"framerate": "30",
 	"quality": "50",
 	"ffmpeg_output_movies": "off",
 };
@@ -198,13 +199,12 @@ app.use(function(req, res, next) {
 		var conf = extend({}, motion_conf);
 
 		// set config mode
-		var h_mode = b_status? H_CONFIG_MODE_RECORD: H_CONFIG_MODE_STREAM;
-		for(var e_key in h_mode) {
-			conf[e_key] = h_mode[e_key];
+		if(b_status) {
+			for(var e_key in H_CONFIG_MODE_RECORD) {
+				conf[e_key] = H_CONFIG_MODE_RECORD[e_key];
+			}
 		}
-
-		console.log(conf);
-
+		
 		// set streaming status
 		b_streaming = b_status? 0: 1;
 
