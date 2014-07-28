@@ -689,11 +689,12 @@ app.get('/captured', function(req, res, next) {
 		});
 	});
 
-	app.get(/^\/watch\/([^\/]+)/, function(req, res, next) {
+	app.get(/^\/watch\/([^\/]+)$/, function(req, res, next) {
 
 		// 
-		res.type('video/ogg');
-		res.sendfile(CAPTURE_DIR+'/'+req.params[0]+'.ogg', function(err) {
+		var s_type = /(\.\w+)$/.exec(req.params[0])[1];
+		res.type('video/'+s_type);
+		res.sendfile(CAPTURE_DIR+'/'+req.params[0], function(err) {
 
 			if(err) {
 				res.send({
