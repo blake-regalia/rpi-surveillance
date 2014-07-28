@@ -692,8 +692,8 @@ app.get('/captured', function(req, res, next) {
 	app.get(/^\/watch\/([^\/]+)/, function(req, res, next) {
 
 		// 
-		res.type('application/x-shockwave-flash');
-		res.sendfile(CAPTURE_DIR+'/'+req.params[0]+'.swf', function(err) {
+		res.type('video/ogg');
+		res.sendfile(CAPTURE_DIR+'/'+req.params[0]+'.ogg', function(err) {
 
 			if(err) {
 				res.send({
