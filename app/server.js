@@ -693,7 +693,7 @@ app.get('/captured', function(req, res, next) {
 
 		// 
 		res.type('application/x-shockwave-flash');
-		res.sendfile(CAPTURE_DIR+'/'+req.params[0]+'.avi', function(err) {
+		res.sendfile(CAPTURE_DIR+'/'+req.params[0]+'.swf', function(err) {
 
 			if(err) {
 				res.send({
