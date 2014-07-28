@@ -31,8 +31,8 @@ var motion_conf;
 
 
 var H_CONFIG_MODE_RECORD = {
-	"width": "576",
-	"height": "324",
+	// "width": "576",
+	// "height": "324",
 	"quality": "15",
 	"ffmpeg_output_movies": "on",
 };
