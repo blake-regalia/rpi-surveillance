@@ -1,0 +1,124 @@
+
+body {
+	margin: 0;
+}
+
+
+.main {
+	position: fixed;
+
+	left: 5%;
+	width: 90%;
+
+	height: auto;
+	top: 25%;
+
+	font-size: 32pt;
+
+	text-align: center;
+}
+
+.main.message {
+	font-family: monospace;
+}
+
+.warning {
+	font-size: 20pt;
+	background-color: rgba(255,255,0,0.2);
+	padding: 0.5em 0.5em;
+	border-radius: 1em;
+	border: 1px solid goldenrod;
+}
+
+.main button {
+	font-size: 0.85em;
+	padding: 0.5em 1em;
+}
+.main *:not(:first-child) {
+	margin-top: 0.5em;
+}
+
+.warning i {
+	color: goldenrod;
+}
+.reload i {
+	color: blue;
+}
+.force-close i {
+	color: red;
+}
+
+#loading {
+	font-family: monospace;
+	padding: 1em 0;
+	border-radius:  1em;
+	border: 1px solid rgba(0,0,0,0.2);
+	background-color: rgba(0,0,0,0.1);
+}
+
+#patience {
+	display: none;
+	font-family: monospace;
+	padding: 1em 0;
+	border-radius:  1em;
+	border: 1px solid rgba(0,0,0,0.2);
+	background-color: rgba(0,0,0,0.1);
+}
+#patience i {
+	color: blue;
+}
+
+#stage {
+	display: none;
+}
+
+#controls {
+	display: none;
+
+	position: fixed;
+	width: 100%;
+	margin: 0;
+}
+
+
+#controls button {
+	cursor: pointer;
+	position: absolute;
+
+	padding: 0.35em 0.75em;
+	margin: 0.25em 0.5em;
+
+	font-size: 20pt;
+	border-radius: 0.5em;
+	background-color: rgba(255,255,255,0.4);
+}
+
+#controls button.snapshot {
+	left: 0;
+}
+#controls button.close {
+	color: maroon;
+	right: 0;
+}
+
+i+span {
+	margin-left: 0.5em;
+}
+
+@media (max-width: 35em) {
+	#controls button span {
+		display: none;
+	}
+}
+
+@media only screen and (max-device-width: 480px) {
+	#controls button span {
+		display: none;
+	}
+	.main {
+		top: 1.5em;
+	}
+	.main button {
+		padding: 0.5em 0.5em;
+	}
+}

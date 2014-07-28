@@ -1,0 +1,26 @@
+doctype html
+html(lang="en")
+	head
+		title= host.name+' Stream'
+		link(rel='stylesheet', href='/font-awesome.min.css')
+		link(rel='stylesheet', href='/stream-app.css')
+		script(type='text/javascript', src='/jquery.js')
+		script(type='text/javascript', src='/stream-app.js')
+	body
+		div#loading.main
+			i.fa.fa-cog.fa-spin
+			span Switching modes
+
+		div#stage
+			div#controls
+				button.snapshot(type='button')
+					i.fa.fa-camera
+					span Snapshot
+				button.close(type='button')
+					i.fa.fa-times
+					span Close Stream
+			img#stream
+
+		div#patience.main
+			i.fa.fa-spinner.fa-spin
+			span Loading
