@@ -198,12 +198,12 @@ app.use(function(req, res, next) {
 		var conf = extend({}, motion_conf);
 
 		// set config mode
-		if(b_status) {
-			conf = extend(conf, H_CONFIG_MODE_RECORD);
+		var h_mode = b_status? H_CONFIG_MODE_RECORD: H_CONFIG_MODE_STREAM;
+		for(var e_key in h_mode) {
+			conf[e_key] = h_mode[e_key];
 		}
-		else {
-			conf = extend(conf, H_CONFIG_MODE_STREAM);
-		}
+
+		console.log(conf);
 
 		// set streaming status
 		b_streaming = b_status? 0: 1;
@@ -246,11 +246,15 @@ app.use(function(req, res, next) {
 		// remove all clients
 		for(var ei_client in h_stream_clients) delete h_stream_clients[ei_client];
 
-		// reset streaming flags
-		b_streaming = 0; b_stream_http = 0;
+		// make sure there is a need for this
+		if(b_streaming || b_stream_http) {
 
-		// switch recording back on
-		switch_recording(1);
+			// reset streaming flags
+			b_streaming = 0; b_stream_http = 0;
+
+			// switch recording back on
+			switch_recording(1);
+		}
 	};
 
 
