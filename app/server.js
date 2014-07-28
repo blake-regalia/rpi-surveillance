@@ -204,7 +204,7 @@ app.use(function(req, res, next) {
 				conf[e_key] = H_CONFIG_MODE_RECORD[e_key];
 			}
 		}
-		
+
 		// set streaming status
 		b_streaming = b_status? 0: 1;
 
@@ -676,6 +676,17 @@ app.get('/captured', function(req, res, next) {
 			}
 		});
 
+	});
+
+	// request to watch videos
+	app.get('/watch', function(req, res, next) {
+
+		// this is gonna be html
+		res.type('html');
+
+		// serve the html file (watching app)
+		res.render('watch', {
+		});
 	});
 
 	app.get(/^\/watch\/([^\/]+)/, function(req, res, next) {
