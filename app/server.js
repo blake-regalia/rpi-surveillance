@@ -43,6 +43,7 @@ var H_CONFIG_MODE_STREAM = {
 	"framerate": "30",
 	"quality": "50",
 	"ffmpeg_output_movies": "off",
+	"extpipe": "off",
 };
 
 
@@ -100,6 +101,8 @@ var reload_motion_conf = function(h_conf, f_okay, f_err) {
 
 // startup
 (function() {
+
+	die('test');
 
 	// get the pid of the motion process
 	exec('ps xao pid,comm | grep motion', function(err, stdout, stderr) {
