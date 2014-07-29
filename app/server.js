@@ -721,6 +721,9 @@ app.get('/qkjns', function(req, res, next) {
 	// ffmpeg_variable_bitrate
 });
 
+// conversion
+// avconv -i %input.avi -c:v libx264 -preset veryfast -crf 28 -an -y %output.mp4
+
 
 // start the host server for handling requests
 app.listen(3005, function() {

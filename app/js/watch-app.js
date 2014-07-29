@@ -58,6 +58,8 @@ $(document).ready(function() {
 				// reference each movie filename
 				var s_movie = a_file_movies[i];
 
+console.log(s_movie);
+
 				// matching prefix `2014-07-28_21-19-07_03` 10 matches same day
 				var s_match_prefix = s_movie.substr(0, 10);
 				var s_match_suffix = s_move.substr(20, 2);
@@ -73,6 +75,8 @@ $(document).ready(function() {
 
 					// attempt to match suffix (event #)
 					if(s_image.substr(20, 2) == s_match_suffix) {
+
+console.log('good match: '+s_image);
 
 						// good match at least
 						a_good_match.push(s_image);
@@ -93,6 +97,8 @@ $(document).ready(function() {
 
 					// multiple matches or none at all
 				}
+
+console.log('best match: '+s_best_match);
 
 				// remove best match from image array
 				if(s_best_match) {
