@@ -49,7 +49,13 @@ $(document).ready(function() {
 				else if(X_FILE_AVI.test(s_file)) {
 					a_file_videos.push(s_file);
 				}
+				else {
+					console.warn('rejected: ',s_file);
+				}
 			}
+
+console.info('images: ',a_file_images);
+console.info('movies: ',a_file_movies);
 
 			// prepare an html for the whole page
 			var r_page = ''
@@ -65,7 +71,7 @@ $(document).ready(function() {
 				var s_match_suffix = s_movie.substr(20, 2);
 
 				// keep best / better matches
-				var s_best_match, a_good_match = [];
+				var s_best_match = '', a_good_match = [];
 
 console.log(s_movie+' pre: "'+s_match_prefix+'"; suf: "'+s_match_suffix+'"');
 console.info(a_file_images);
