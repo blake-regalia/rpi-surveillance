@@ -11,6 +11,9 @@ $(document).ready(function() {
 	var X_FILE_MP4 = /\d+\.\d+\.mp4$/;
 	var X_FILE_AVI = /\.avi$/;
 
+	// info extraction
+	var X_INFO_DATE = /^(\d+)-(\d+)-(\d+)_(\d+)-(\d+)-(\d+)/;
+
 	// file containers
 	var a_file_images = [];
 	var a_file_movies = [];
@@ -119,10 +122,21 @@ console.log('best match: '+s_best_match);
 					s_best_match = S_SRC_THUMB_NOT_FOUND;
 				}
 
+				// extract the date info from this movie
+				var m_info_date = X_INFO_DATE.exec(s_movie);
+
+				var u_date = new Date();
+				u_date.setYear(m_info_date[1]);
+				u_date.setMonth(m_info_date[2]);
+				u_date.setDate(m_info_date[3]);
+				u_date.setHours(m_info_date[4]);
+				u_date.setMinutes(m_info_date[5]);
+				var s_date = u_date.format("ddd mmm dd 'yy - hh:MM tt");
+
 				// finally, create a playable thumbnail
 				var r_event = ''
 					+'<div class="play" data-src="'+btoa(s_movie)+'">'
-						+'<div class="title">'+s_movie+'</div>'
+						+'<div class="title">'+s_date+'</div>'
 						+'<img src="/preview/'+s_best_match+'">'
 						+'<video controls>'
 							+'<source src="/watch/'+s_movie+'" type="video/mp4">'
