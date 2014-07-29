@@ -57,8 +57,9 @@ $(document).ready(function() {
 				}
 			}
 
-console.info('images: ',a_file_images);
-console.info('movies: ',a_file_movies);
+			// sort the movies
+			a_file_movies.sort();
+			a_file_movies.reverse();
 
 			// prepare an html for the whole page
 			var r_page = ''
