@@ -127,7 +127,7 @@ console.log('best match: '+s_best_match);
 
 				var u_date = new Date();
 				u_date.setYear(m_info_date[1]);
-				u_date.setMonth(m_info_date[2]);
+				u_date.setMonth(parseInt(m_info_date[2]) - 1);
 				u_date.setDate(m_info_date[3]);
 				u_date.setHours(m_info_date[4]);
 				u_date.setMinutes(m_info_date[5]);
@@ -154,7 +154,7 @@ console.log('best match: '+s_best_match);
 			$(document).on('click', '.play', function() {
 				var q_this = $(this);
 				q_this.children('img').hide();
-				q_this.children('.title').slideUp();
+				// q_this.children('.title').slideUp();
 				var e_video = q_this.children('video').show().get(0);
 				e_video.play();
 			});
