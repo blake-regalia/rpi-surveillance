@@ -71,7 +71,7 @@ var rx_match = function(regex, string, s_keys) {
 
 
 var die = function() {
-	console.error.call(arguments);
+	console.error.apply(this, arguments);
 	process.exit(1);
 };
 
