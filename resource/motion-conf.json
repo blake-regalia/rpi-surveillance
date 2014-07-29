@@ -39,7 +39,7 @@
 	"event_gap": "5",
 	"max_movie_time": "900",
 	"emulate_motion": "off",
-	"output_pictures": "best",
+	"output_pictures": "center",
 	"output_debug_pictures": "off",
 	"quality": "15",
 	"picture_type": "jpeg",

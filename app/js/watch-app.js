@@ -140,7 +140,7 @@ console.log('best match: '+s_best_match);
 			$(document).on('click', '.play', function() {
 				var q_this = $(this);
 				q_this.children('img').hide();
-				q_this.children('.title').hide('slow');
+				q_this.children('.title').slideUp();
 				var e_video = q_this.children('video').show().get(0);
 				e_video.play();
 			});
