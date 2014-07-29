@@ -52,7 +52,7 @@
 	"ffmpeg_video_codec": "mpeg4",
 	"ffmpeg_deinterlace": "off",
 	"use_extpipe": "on",
-	"extpipe": "mencoder -demuxer rawvideo -rawvideo w=320:h=240:i420 -ovc x264 -x264encopts bframes=4:frameref=1:subq=1:scenecut=-1:nob_adapt:threads=1:keyint=1000:8x8dct:vbv_bufsize=4000:crf=24:partitions=i8x8,i4x4:vbv_maxrate=800:no-chroma-me -vf denoise3d=16:12:48:4,pp=lb -of   avi -o %f.avi - -fps %fps",
+	"extpipe": "mencoder -demuxer rawvideo -rawvideo w=320:h=240:i420 -ovc x264 -x264encopts bframes=4:frameref=1:subq=1:scenecut=-1:nob_adapt:threads=1:keyint=1000:8x8dct:vbv_bufsize=4000:crf=24:partitions=i8x8,i4x4:vbv_maxrate=800:no-chroma-me -vf denoise3d=16:12:48:4,pp=lb -of   avi -o raw_%f.avi - -fps %fps",
 	"snapshot_interval": "0",
 	"locate_motion_mode": "off",
 	"locate_motion_style": "box",
