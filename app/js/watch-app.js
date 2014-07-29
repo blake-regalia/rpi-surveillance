@@ -26,11 +26,13 @@ $(document).ready(function() {
 		dataType: 'json',
 		success: function(json) {
 
+			console.info(json);
+
 			// update local copy of files
 			a_files = json.files;
 
 			// filter the files into arrays by media type
-			for(var i=0; i<a_files; i++) {
+			for(var i=0; i<a_files.length; i++) {
 
 				// reference each filename
 				var s_file = a_files[i];
