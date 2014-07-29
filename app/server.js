@@ -198,10 +198,12 @@ app.use(function(req, res, next) {
 		// prepare the conf json object
 		var conf = extend({}, motion_conf);
 
-		// set config mode
-		if(b_status) {
-			for(var e_key in H_CONFIG_MODE_RECORD) {
-				conf[e_key] = H_CONFIG_MODE_RECORD[e_key];
+		// recording switched off
+		if(!b_status) {
+
+			// apply stream mode config
+			for(var e_key in H_CONFIG_MODE_STREAM) {
+				conf[e_key] = H_CONFIG_MODE_STREAM[e_key];
 			}
 		}
 
