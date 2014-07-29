@@ -64,7 +64,7 @@ console.log(s_movie);
 
 				// matching prefix `2014-07-28_21-19-07_03` 10 matches same day
 				var s_match_prefix = s_movie.substr(0, 10);
-				var s_match_suffix = s_move.substr(20, 2);
+				var s_match_suffix = s_movie.substr(20, 2);
 
 				// keep best / better matches
 				var s_best_match, a_good_match = [];
