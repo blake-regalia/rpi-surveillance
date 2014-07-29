@@ -52,7 +52,7 @@
 	"ffmpeg_video_codec": "mpeg4",
 	"ffmpeg_deinterlace": "off",
 	"use_extpipe": "on",
-	"extpipe": "avconv -i pipe:0 -c:v copy -an raw_%f.mp4",
+	"extpipe": "avconv -i pipe:0 -c:v copy -an /home/pi/capture/raw_%f.mp4",
 	"snapshot_interval": "0",
 	"locate_motion_mode": "off",
 	"locate_motion_style": "box",
