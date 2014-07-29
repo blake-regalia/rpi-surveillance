@@ -115,9 +115,12 @@ console.log('best match: '+s_best_match);
 
 				// finally, create a playable thumbnail
 				var r_event = ''
-					+'<div class="play" data-src="'+btoa(s_file)+'">'
-						+'<span>'+s_file+'</span>'
+					+'<div class="play" data-src="'+btoa(s_movie)+'">'
+						+'<span class="title">'+s_movie+'</span>'
 						+'<img src="/preview/'+s_best_match+'">'
+						+'<video controls>'
+							+'<source src="/watch/'+s_movie+'" type="video/mp4">'
+						+'</video>'
 					+'</div>';
 
 				// append this html to the construct
@@ -130,12 +133,10 @@ console.log('best match: '+s_best_match);
 			// bind event listeners
 			$(document).on('click', '.play', function() {
 				var q_this = $(this);
-				var z_image = q_this.attr('data-src');
-				var s_image;
-				try {
-					s_image = atob(z_image);
-				} catch(e) {}
-				console.log(s_image);
+				q_this.children('img').hide();
+				q_this.children('.title').hide('slow');
+				var e_video = q_this.children('video').show().get(0);
+				e_video.play();
 			});
 		},
 	});
