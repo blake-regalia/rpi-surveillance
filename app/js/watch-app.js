@@ -60,8 +60,6 @@ $(document).ready(function() {
 				// reference each movie filename
 				var s_movie = a_file_movies[i];
 
-console.log(s_movie);
-
 				// matching prefix `2014-07-28_21-19-07_03` 10 matches same day
 				var s_match_prefix = s_movie.substr(0, 10);
 				var s_match_suffix = s_movie.substr(20, 2);
@@ -69,8 +67,11 @@ console.log(s_movie);
 				// keep best / better matches
 				var s_best_match, a_good_match = [];
 
+console.log(s_movie+' pre: "'+s_match_prefix+'"; suf: "'+s_match_suffix+'"');
+console.info(a_file_images);
+
 				// match the movie to a thumbnail by event criteria
-				for(var i_image=0; i_image<a_file_images.length; i++) {
+				for(var i_image=0; i_image<a_file_images.length; i_image++) {
 
 					// get the image filename for testing
 					var s_image = a_file_images[i_image];
