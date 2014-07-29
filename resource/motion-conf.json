@@ -62,7 +62,7 @@
 	"target_dir": "/home/pi/capture",
 	"snapshot_filename": "%v_%Y-%m-%d_%H-%M-%S_snap",
 	"picture_filename": "%v_%Y-%m-%d_%H-%M-%S_%q",
-	"movie_filename": "352x288_7fps_5vbr_mpeg4.%v.avi",
+	"movie_filename": "%Y-%m-%d_%H-%M-%S.%v",
 	"timelapse_filename": "%Y%m%d-timelapse",
 	"ipv6_enabled": "off",
 	"stream_port": "8081",
