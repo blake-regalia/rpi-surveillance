@@ -102,8 +102,6 @@ var reload_motion_conf = function(h_conf, f_okay, f_err) {
 // startup
 (function() {
 
-	die('test');
-
 	// get the pid of the motion process
 	exec('ps xao pid,comm | grep motion', function(err, stdout, stderr) {
 		if(!err && (m=/^\s*(\d+)\s+motion/.exec(stdout)) != null) {
