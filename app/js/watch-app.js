@@ -21,7 +21,7 @@ $(document).ready(function() {
 
 	// get all converted movie files
 	$.ajax({
-		url: '/captured-videos',
+		url: '/captured',
 		type: 'GET',
 		dataType: 'json',
 		success: function(json) {
