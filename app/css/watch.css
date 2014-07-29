@@ -1,5 +1,6 @@
 body {
 	margin: 0;
+	background-color: black;
 }
 
 .play {
@@ -7,16 +8,17 @@ body {
 }
 
 .play .title {
-	position: absolute;
-	display: inline-block;
+	display: block;
 	margin-left: 12px;
 	margin-top: 1em;
 	color: white;
-	background-color: rgba(0,0,0,0.6);
+	background-color: rgba(255,255,255,0.2);
 	padding: 1em 3em;
 	width: 232px;
-	border-radius: 1em;
+	border-radius: 1em 1em 0em 0em;
 	font-family: monospace;
+	border: 1px solid white;
+	border-bottom-width: 0;
 }
 
 .play img {

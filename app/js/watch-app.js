@@ -122,7 +122,7 @@ console.log('best match: '+s_best_match);
 				// finally, create a playable thumbnail
 				var r_event = ''
 					+'<div class="play" data-src="'+btoa(s_movie)+'">'
-						+'<span class="title">'+s_movie+'</span>'
+						+'<div class="title">'+s_movie+'</div>'
 						+'<img src="/preview/'+s_best_match+'">'
 						+'<video controls>'
 							+'<source src="/watch/'+s_movie+'" type="video/mp4">'
