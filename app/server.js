@@ -682,6 +682,36 @@ app.get('/captured', function(req, res, next) {
 
 	});
 
+	app.get(/\/preview\/([\d\-_\.]+)\.(jpg|png)$/, function(req, res, next) {
+		var s_file = req.params[0];
+		var s_ext = req.params[1];
+		if(s_ext == 'jpg') {
+			res.type('image/jpeg');
+			res.sendfile(CAPTURE_DIR+'/'+s_file+'.'+s_ext, function(err) {
+				if(err) {
+					res.send({
+						error: 'Failed to send thumbnail file to client via HTTP',
+						info: JSON.parse(JSON.stringify(err)),
+					});
+				}
+			});
+		}
+		else if(s_ext == 'png') {
+			res.type('image/png');
+			res.sendfile('../resource/'+s_file+'.'+s_ext, function(err) {
+				if(err) {
+					res.send({
+						error: 'Failed to send thumbnail file to client via HTTP',
+						info: JSON.parse(JSON.stringify(err)),
+					});
+				}
+			});
+		}
+		else {
+			res.send('wtf?');
+		}
+	});
+
 	// request to watch videos
 	app.get('/watch', function(req, res, next) {
 

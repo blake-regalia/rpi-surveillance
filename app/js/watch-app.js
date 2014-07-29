@@ -8,7 +8,7 @@ $(document).ready(function() {
 
 	// file filters
 	var X_FILE_JPEG = /\.jpe?g$/;
-	var X_FILE_MP4 = /\.mp4$/;
+	var X_FILE_MP4 = /\d+\.\d+\.mp4$/;
 	var X_FILE_AVI = /\.avi$/;
 
 	// file containers
