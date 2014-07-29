@@ -12,7 +12,7 @@
 	"rotate": "0",
 	"width": "352",
 	"height": "288",
-	"framerate": "20",
+	"framerate": "15",
 	"minimum_frame_time": "0",
 	"netcam_keepalive": "off",
 	"netcam_tolerant_check": "off",
