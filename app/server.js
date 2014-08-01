@@ -31,13 +31,6 @@ var motion_pid;
 var motion_conf;
 
 
-// var H_CONFIG_MODE_RECORD = {
-// 	// "width": "576",
-// 	// "height": "324",
-// 	"quality": "15",
-// 	"ffmpeg_output_movies": "on",
-// };
-
 var H_CONFIG_MODE_STREAM = {
 	"width": "1024",
 	"height": "576",
@@ -740,6 +733,110 @@ app.get('/captured', function(req, res, next) {
 	});
 
 })();
+
+
+// movies
+(function() {
+
+	// media file filter
+	var X_FILE_MEDIA = /^(.+)\.(\w+)$/;
+
+	var T_CONVERT_VACANCY = 12*T_MINUTES;
+	var T_CONVERT_BUSY = 30*T_SECONDS;
+
+	// convert the next video to appropriate stream
+	var convert_next = function(){
+
+		// start with all files
+		fs.readdir(CAPTURE_DIR, function(err, files) {
+
+			// wtf?
+			if(err) {
+				console.error('Failed to read capture directory: ',err);
+				return setTimeout(convert_next, T_CONVERT_BUSY);
+			}
+
+			// sort the directory (ascending chronological order)
+			files.sort();
+
+			// prepare to find the earliest video
+			var s_earliest_avi = false;
+
+			// iterate through all files
+			for(var i=0; i<files.length; i++) {
+
+				// reference filename
+				var s_file = files[i];
+
+				// do a match on filename
+				if(m_file=X_FILE_MEDIA.exec(s_file)) {
+
+					var s_basename = m_file[1];
+					var s_ext = m_file[2];
+
+					// this is an unconverted video
+					if(s_ext == 'avi') {
+
+						// there is already a previous avi
+						if(s_earliest_avi) break;
+
+						// assume it is the earliest one
+						s_earliest_avi = s_basename;
+					}
+					// encountered a movie
+					else if(s_ext == 'mp4' && s_earliest_avi) {
+
+						// it matches the "earliest" movie
+						if(s_basename == s_earliest_avi) {
+
+							// (attempt to) delete the spare avi file
+							fs.unlink(s_earliest_avi+'.avi', function(){});
+
+							// continue
+							s_earliest_avi = false;
+						}
+						// some other movie, we found the first avi
+						else {
+							break;
+						}
+					}
+				}
+			}
+
+			// convert the video
+			if(s_earliest_avi) {
+				console.log('converting video: "'+s_earliest_avi+'"...');
+				exec('avconv -i '+CAPTURE_DIR+'/'+s_earliest_avi+'.avi -c:v libx264 -preset veryfast -crf 28 -an -y '+CAPTURE_DIR+'/'+s_earliest_avi+'.mp4', function(err, stdout, stderr) {
+					if(err) console.error('Failed to convert video: ',err);
+					else if(stderr) console.error('Converter said: "'+stderr+'"');
+
+					// success!
+					else {
+
+						// attempt to delete the original avi file
+						fs.unlink(s_earliest_avi+'.avi', function(){});
+
+						// immediately attempt processing the next video
+						return setTimeout(convert_next, 0);
+					}
+
+					// no matter what
+					setTimeout(convert_next, T_CONVERT_BUSY);
+				});
+			}
+
+			// try again later
+			else {
+				setTimeout(convert_next, T_CONVERT_VACANCY);
+			}
+		});
+	};
+
+	// start the process
+	convert_next();
+
+})();
+
 
 
 // 
