@@ -732,6 +732,11 @@ app.get('/captured', function(req, res, next) {
 		});
 	});
 
+	app.post('/durations', function(req, res, next) {
+		console.log(req.query);
+		res.send({});
+	});
+
 })();
 
 
@@ -740,6 +745,7 @@ app.get('/captured', function(req, res, next) {
 
 	// media file filter
 	var X_FILE_MEDIA = /^(.+)\.(\w+)$/;
+	var X_DURATION = /Duration:\s*(\d+):(\d+):(\d+)\.(\d+),/;
 
 	var T_CONVERT_VACANCY = 12*T_MINUTES;
 	var T_CONVERT_BUSY = 30*T_SECONDS;
@@ -790,7 +796,7 @@ app.get('/captured', function(req, res, next) {
 						if(s_basename == s_earliest_avi) {
 
 							// (attempt to) delete the spare avi file
-							fs.unlink(s_earliest_avi+'.avi', function(){});
+							fs.unlink(CAPTURE_DIR+'/'+s_earliest_avi+'.avi', function(){});
 
 							// continue
 							s_earliest_avi = false;
@@ -805,21 +811,42 @@ app.get('/captured', function(req, res, next) {
 
 			// convert the video
 			if(s_earliest_avi) {
-				console.log('converting video: "'+s_earliest_avi+'"...');
+
+				// create a file that tells this is converting
+				fs.open(CAPTURE_DIR+'/'+s_earliest_avi+'.busy', 'w'), function(){});
+
 				exec('avconv -i '+CAPTURE_DIR+'/'+s_earliest_avi+'.avi -c:v libx264 -preset veryfast -crf 28 -an -y '+CAPTURE_DIR+'/'+s_earliest_avi+'.mp4', function(err, stdout, stderr) {
 					if(err) console.error('Failed to convert video: ',err);
 
 					// success!
 					else {
 
+						// get duration from stderr
+						var m_duration = X_DURATION.exec(stderr);
+						var s_hours = m_duration[1];
+						var s_minutes = m_duration[2];
+						var s_seconds = m_duration[3];
+						var s_centiseconds = m_duration[4];
+
+						var n_milliseconds = parseInt(s_centiseconds)*100
+							+parseInt(s_seconds)*T_SECONDS
+							+parseInt(s_minutes)*T_MINUTES
+							+parseInt(s_hours)*60*T_MINUTES;
+
+						// create a file that describes the duration
+						fs.writeFile(CAPTURE_DIR+'/'+s_earliest_avi+'.duration', n_milliseconds+'', function(err) {
+							console.error('failed to save duration to file: "'+s_earliest_avi+'"');
+						});
+
 						// attempt to delete the original avi file
-						fs.unlink(s_earliest_avi+'.avi', function(){});
+						fs.unlink(CAPTURE_DIR+'/'+s_earliest_avi+'.avi', function(){});
 
 						// immediately attempt processing the next video
 						return setTimeout(convert_next, 0);
 					}
 
 					// no matter what
+					fs.unlink(CAPTURE_DIR+'/'+s_earliest_avi+'.busy');
 					setTimeout(convert_next, T_CONVERT_BUSY);
 				});
 			}
