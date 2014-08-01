@@ -36,7 +36,7 @@
 	"minimum_motion_frames": "1",
 	"pre_capture": "2",
 	"post_capture": "2",
-	"event_gap": "5",
+	"event_gap": "25",
 	"max_movie_time": "900",
 	"emulate_motion": "off",
 	"output_pictures": "center",

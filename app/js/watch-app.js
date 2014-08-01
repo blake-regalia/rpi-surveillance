@@ -162,10 +162,10 @@ $(document).ready(function() {
 
 				// finally, create a playable thumbnail
 				var r_event = ''
-					+'<div class="play" data-src="'+btoa(s_movie)+'">'
+					+'<div class="play">'
 						+'<div class="title">'+s_date+'</div>'
 						+'<img src="'+s_thumbnail+'">'
-						+'<video controls>'
+						+'<video preload="none" controls>'
 							+'<source src="/watch/'+s_movie+'" type="video/mp4">'
 						+'</video>'
 					+'</div>';
