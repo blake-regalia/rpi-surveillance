@@ -815,6 +815,7 @@ app.get('/captured', function(req, res, next) {
 				// create a file that tells this is converting
 				fs.open(CAPTURE_DIR+'/'+s_earliest_avi+'.busy', 'w', function(){});
 
+				console.log('converting "'+s_earliest_avi+'"...');
 				exec('avconv -i '+CAPTURE_DIR+'/'+s_earliest_avi+'.avi -c:v libx264 -preset veryfast -crf 28 -an -y '+CAPTURE_DIR+'/'+s_earliest_avi+'.mp4', function(err, stdout, stderr) {
 					if(err) console.error('Failed to convert video: ',err);
 
@@ -835,7 +836,7 @@ app.get('/captured', function(req, res, next) {
 
 						// create a file that describes the duration
 						fs.writeFile(CAPTURE_DIR+'/'+s_earliest_avi+'.duration', n_milliseconds+'', function(err) {
-							console.error('failed to save duration to file: "'+s_earliest_avi+'"');
+							console.error('failed to save duration ['+n_milliseconds+'] to file: "'+s_earliest_avi+'"', err);
 						});
 
 						// attempt to delete the original avi file

@@ -11,6 +11,7 @@ $(document).ready(function() {
 	var X_FILE_JPEG = /\.jpe?g$/;
 	var X_FILE_MP4 = /\d+\.\d+\.mp4$/;
 	var X_FILE_AVI = /\.avi$/;
+	var X_FILE_BUSY = /\.busy$/;
 
 	// info extraction
 	var X_INFO_DATE = /^(\d+)-(\d+)-(\d+)_(\d+)-(\d+)-(\d+)/;
