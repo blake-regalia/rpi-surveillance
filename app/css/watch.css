@@ -12,17 +12,18 @@ body {
 }
 
 .play {
+	width: 350px;
 	display: inline-block;
 }
 
 .play .title {
 	display: block;
-	margin-left: 5%;
+	width: 352px;
+
 	margin-top: 1em;
 	color: white;
 	background-color: rgba(255,255,255,0.2);
-	padding: 1em 3em;
-	width: 80%;
+	padding: 1em 0;
 	border-radius: 1em 1em 0em 0em;
 	font-family: monospace;
 	border: 1px solid white;

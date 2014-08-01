@@ -808,7 +808,6 @@ app.get('/captured', function(req, res, next) {
 				console.log('converting video: "'+s_earliest_avi+'"...');
 				exec('avconv -i '+CAPTURE_DIR+'/'+s_earliest_avi+'.avi -c:v libx264 -preset veryfast -crf 28 -an -y '+CAPTURE_DIR+'/'+s_earliest_avi+'.mp4', function(err, stdout, stderr) {
 					if(err) console.error('Failed to convert video: ',err);
-					else if(stderr) console.error('Converter said: "'+stderr+'"');
 
 					// success!
 					else {
