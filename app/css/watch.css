@@ -8,7 +8,7 @@ body {
 	body {
 		width: 60%;
 		font-size: 20pt;
-		margin-left: calc(50% - 175px);
+		margin-left: calc(50% - 350px);
 	}
 }
 
@@ -19,7 +19,7 @@ body {
 
 .play .title {
 	display: block;
-	width: 352px;
+	width: 702px;
 
 	text-align: center;
 	margin-top: 1em;
