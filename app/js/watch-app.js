@@ -71,7 +71,7 @@ $(document).ready(function() {
 			var r_page = ''
 
 			// iterate over all movies
-			for(var i=a_file_movies.length; i>=0; i--) {
+			for(var i=a_file_movies.length-1; i>=0; i--) {
 
 				// reference each movie filename
 				var s_movie = a_file_movies[i];

@@ -836,7 +836,7 @@ app.get('/captured', function(req, res, next) {
 
 						// create a file that describes the duration
 						fs.writeFile(CAPTURE_DIR+'/'+s_earliest_avi+'.duration', n_milliseconds+'', function(err) {
-							console.error('failed to save duration ['+n_milliseconds+'] to file: "'+s_earliest_avi+'"', err);
+							if(err) console.error('failed to save duration ['+n_milliseconds+'] to file: "'+s_earliest_avi+'"', err);
 						});
 
 						// attempt to delete the original avi file
