@@ -171,7 +171,7 @@ $(document).ready(function() {
 					+'</div>';
 
 				// append this html to the construct
-				r_page = r_event + r_page;
+				r_page += r_event;
 			}
 
 			// build the page all at once
