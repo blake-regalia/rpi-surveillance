@@ -164,7 +164,7 @@ $(document).ready(function() {
 				var r_event = ''
 					+'<div class="play">'
 						+'<div class="title">'+s_date+'</div>'
-						+'<img src="'+s_thumbnail+'">'
+						+'<img src="loading.png" data-src="'+s_thumbnail+'">'
 						+'<video preload="none" controls>'
 							+'<source src="/watch/'+s_movie+'" type="video/mp4">'
 						+'</video>'
@@ -199,6 +199,9 @@ $(document).ready(function() {
 				var e_video = q_this.children('video').show().get(0);
 				e_video.play();
 			});
+
+			// lazy load images on scroll (600px before they are reached)
+			$('img').unveil(600);
 		},
 	});
 
