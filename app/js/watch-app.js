@@ -97,8 +97,8 @@ $(document).ready(function() {
 					// keep best / better matches
 					var s_best_match = '', a_good_match = [];
 
-	console.log(s_movie+' pre: "'+s_match_prefix+'"; suf: "'+s_match_suffix+'"');
-	console.info(a_file_images);
+	// console.log(s_movie+' pre: "'+s_match_prefix+'"; suf: "'+s_match_suffix+'"');
+	// console.info(a_file_images);
 
 					// match the movie to a thumbnail by event criteria
 					for(var i_image=0; i_image<a_file_images.length; i_image++) {
@@ -109,7 +109,7 @@ $(document).ready(function() {
 						// attempt to match suffix (event #)
 						if(s_image.substr(20, 2) == s_match_suffix) {
 
-	console.log('good match: '+s_image);
+	// console.log('good match: '+s_image);
 
 							// good match at least
 							a_good_match.push(s_image);
@@ -131,7 +131,7 @@ $(document).ready(function() {
 						// multiple matches or none at all
 					}
 
-	console.log('best match: '+s_best_match);
+	// console.log('best match: '+s_best_match);
 
 					// found a best match thumbnail
 					if(s_best_match) {
@@ -177,6 +177,8 @@ $(document).ready(function() {
 			// build the page all at once
 			$(r_page).appendTo(document.body);
 
+			console.log(a_file_movies);
+
 			// query for durations of all videos
 			$.ajax({
 				url: '/durations',
@@ -187,6 +189,7 @@ $(document).ready(function() {
 					console.log(json);
 				},
 			});
+
 
 			// bind event listeners
 			$(document).on('click', '.play', function() {
