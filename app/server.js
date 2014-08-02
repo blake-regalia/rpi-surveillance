@@ -149,9 +149,11 @@ app.get(/^\/(fonts)\/(.*)$/, function(req, res) {
 	res.sendfile(req.params[1].toLowerCase(), {root: './'+s_dir});
 });
 
-// POST
-app.use( bodyParser.json() );       // to support JSON-encoded bodies
-app.use( bodyParser.urlencoded() ); // to support URL-encoded bodies
+// parse application/x-www-form-urlencoded
+app.use(bodyParser.urlencoded({ extended: false }))
+
+// to support JSON-encoded bodies
+app.use(bodyParser.json());
 
 // establish default response type is json
 app.use(function(req, res, next) {
