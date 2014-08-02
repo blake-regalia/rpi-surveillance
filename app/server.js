@@ -744,6 +744,7 @@ app.get('/captured', function(req, res, next) {
 			var s_movie = a_movies[i];
 			console.log(s_movie.substr(0, s_movie.length-4));
 			fs.readFile(CAPTURE_DIR+'/'+s_movie.substr(0, s_movie.length-4)+'.duration', function(err, data) {
+				console.log(err, data);
 				if(!err) {
 					h_durations[s_movie] = data;
 				}
