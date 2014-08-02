@@ -16,6 +16,10 @@ $(document).ready(function() {
 	// info extraction
 	var X_INFO_DATE = /^(\d+)-(\d+)-(\d+)_(\d+)-(\d+)-(\d+)/;
 
+	// time
+	var T_SECONDS = 1000;
+	var T_MINUTES = 60*T_SECONDS;
+
 	// file containers
 	var a_file_images = [];
 	var a_file_movies = [];
@@ -162,7 +166,7 @@ $(document).ready(function() {
 
 				// finally, create a playable thumbnail
 				var r_event = ''
-					+'<div class="play">'
+					+'<div class="play" data-movie="'+s_movie+'">'
 						+'<div class="title">'+s_date+'</div>'
 						+'<img src="loading.png" data-src="'+s_thumbnail+'">'
 						+'<video preload="none" controls>'
@@ -186,7 +190,15 @@ $(document).ready(function() {
 					movies: a_file_movies
 				},
 				success: function(json) {
-					console.log(json);
+					$('.play').each(function() {
+						var movie = $(this).attr('data-movie');
+						if(json[movie]) {
+							var n_duration = Math.round(json[movie] / T_SECONDS);
+							var s_duration = n_duration+' seconds';
+							if(n_duration >= 60) s_duration = Math.floor(n_duration / T_MINUTES)+' min '+(n_duration%T_MINUTES)+' sec';
+							$('<span>'+s_duration+'</span>').appendTo($(this).find('.title'));
+						}
+					});
 				},
 			});
 
