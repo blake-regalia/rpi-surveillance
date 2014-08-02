@@ -196,7 +196,7 @@ $(document).ready(function() {
 							var n_duration = Math.round(json[movie] / T_SECONDS);
 							var s_duration = n_duration+' seconds';
 							if(n_duration >= 60) s_duration = Math.floor(n_duration / T_MINUTES)+' min '+(n_duration%T_MINUTES)+' sec';
-							$('<span>'+s_duration+'</span>').appendTo($(this).find('.title'));
+							$('<span data-debug="'+json[movie]+'">'+s_duration+'</span>').appendTo($(this).find('.title'));
 						}
 					});
 				},
