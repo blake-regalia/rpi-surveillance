@@ -4,17 +4,6 @@ body {
 	width: 400px;
 }
 
-@media only screen and (max-device-width: 480px) {
-	body {
-		width: 60%;
-		font-size: 20pt;
-		margin-left: calc(50% - 350px);
-	}
-	.play .title span:after {
-		content: ' "';
-	}
-}
-
 .play {
 	width: 700px;
 	display: inline-block;
@@ -53,4 +42,16 @@ body {
 }
 .play .title span:after {
 	content: " seconds";
+}
+
+
+@media only screen and (max-device-width: 480px) {
+	body {
+		width: 60%;
+		font-size: 20pt;
+		margin-left: calc(50% - 350px);
+	}
+	.play .title span:after {
+		content: ' "';
+	}
 }
