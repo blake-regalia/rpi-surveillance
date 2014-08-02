@@ -743,11 +743,7 @@ app.get('/captured', function(req, res, next) {
 		for(var i=0; i<a_movies.length; i++) {
 			var s_movie = a_movies[i];
 			console.log(s_movie.substr(0, s_movie.length-4));
-			fs.readFile(CAPTURE_DIR+'/'+s_movie.substr(0, s_movie.length-4)+'.duration', {encoding:'utf8'}, function(err, data) {
-				if(!err) {
-					h_durations[s_movie] = data;
-				}
-			});
+			h_durations[s_movie] = fs.readFileSync(CAPTURE_DIR+'/'+s_movie.substr(0, s_movie.length-4)+'.duration', {encoding:'utf8'});
 		}
 		console.log(h_durations);
 		res.send(h_durations);
