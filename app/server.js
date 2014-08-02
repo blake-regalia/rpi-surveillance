@@ -738,7 +738,7 @@ app.get('/captured', function(req, res, next) {
 	});
 
 	app.post('/durations', function(req, res, next) {
-		console.log(req.query);
+		console.log(req.body);
 		res.send({});
 	});
 
