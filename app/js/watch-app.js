@@ -194,8 +194,8 @@ $(document).ready(function() {
 						var movie = $(this).attr('data-movie');
 						if(json[movie]) {
 							var n_duration = Math.round(json[movie] / T_SECONDS);
-							var s_duration = n_duration+' seconds';
-							if(n_duration >= 60) s_duration = Math.floor(n_duration / T_MINUTES)+' min '+(n_duration%T_MINUTES)+' sec';
+							var s_duration = n_duration;
+							if(n_duration >= 60) s_duration = Math.floor(n_duration / T_MINUTES)+' min '+(n_duration%T_MINUTES);
 							$('<span data-debug="'+json[movie]+'">'+s_duration+'</span>').appendTo($(this).find('.title'));
 						}
 					});

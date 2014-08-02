@@ -10,6 +10,9 @@ body {
 		font-size: 20pt;
 		margin-left: calc(50% - 350px);
 	}
+	.play .title span:after {
+		content: ' "';
+	}
 }
 
 .play {
@@ -47,4 +50,7 @@ body {
 	position: absolute;
 	right: 2em;
 	color: orange;
+}
+.play .title span:after {
+	content: " seconds";
 }

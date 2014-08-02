@@ -83,5 +83,4 @@
 	"track_speed": "255",
 	"track_stepsize": "40",
 	"quiet": "on",
-	"on_movie_end": "ln -s %f /home/pi/capture/last_vid.mp4"
 }
