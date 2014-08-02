@@ -11,6 +11,7 @@ var express = require('express');
 var dateformat = require('dateformat');
 var app = express();
 var cookieParser = require('cookie-parser');
+var bodyParser = require('body-parser')
 
 var T_SECONDS = 1000;
 var T_MINUTES = 60*T_SECONDS;
@@ -147,6 +148,10 @@ app.get(/^\/(fonts)\/(.*)$/, function(req, res) {
 	var s_dir = req.params[0];
 	res.sendfile(req.params[1].toLowerCase(), {root: './'+s_dir});
 });
+
+// POST
+app.use( bodyParser.json() );       // to support JSON-encoded bodies
+app.use( bodyParser.urlencoded() ); // to support URL-encoded bodies
 
 // establish default response type is json
 app.use(function(req, res, next) {
@@ -613,8 +618,6 @@ app.get('/snapshot', function(req, res, next) {
 			// send the snapshot file
 			var sendSnapshot = function() {
 
-				console.log('sending file! '+CAPTURE_DIR+'/lastsnap.jpg');
-
 				// send the snapshot image to the client
 				res.type('image/jpeg');
 				res.sendfile(CAPTURE_DIR+'/lastsnap.jpg', function(err) {
@@ -789,6 +792,9 @@ app.get('/captured', function(req, res, next) {
 						// assume it is the earliest one
 						s_earliest_avi = s_basename;
 					}
+					else if(s_ext == 'busy' && s_earliest_avi){
+						
+					}
 					// encountered a movie
 					else if(s_ext == 'mp4' && s_earliest_avi) {
 
@@ -839,8 +845,9 @@ app.get('/captured', function(req, res, next) {
 							if(err) console.error('failed to save duration ['+n_milliseconds+'] to file: "'+s_earliest_avi+'"', err);
 						});
 
-						// attempt to delete the original avi file
+						// attempt to delete the original avi file and busy file
 						fs.unlink(CAPTURE_DIR+'/'+s_earliest_avi+'.avi', function(){});
+						fs.unlink(CAPTURE_DIR+'/'+s_earliest_avi+'.busy', function(){});
 
 						// immediately attempt processing the next video
 						return setTimeout(convert_next, 0);
