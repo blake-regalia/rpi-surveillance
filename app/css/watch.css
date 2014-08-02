@@ -18,6 +18,7 @@ body {
 }
 
 .play .title {
+	position: relative;
 	display: block;
 	width: 702px;
 
@@ -40,4 +41,10 @@ body {
 .play video {
 	display: none;
 	height: 573px;
+}
+
+.play .title span {
+	position: absolute;
+	right: 2em;
+	color: orange;
 }
