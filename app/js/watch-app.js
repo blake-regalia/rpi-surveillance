@@ -177,8 +177,6 @@ $(document).ready(function() {
 			// build the page all at once
 			$(r_page).appendTo(document.body);
 
-			console.log(a_file_movies);
-
 			// query for durations of all videos
 			$.ajax({
 				url: '/durations',
