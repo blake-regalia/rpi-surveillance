@@ -184,7 +184,9 @@ $(document).ready(function() {
 				url: '/durations',
 				type: 'POST',
 				dataType: 'json',
-				data: a_file_movies,
+				data: {
+					movies: a_file_movies
+				},
 				success: function(json) {
 					console.log(json);
 				},
