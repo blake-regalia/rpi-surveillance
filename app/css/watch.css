@@ -52,6 +52,6 @@ body {
 		margin-left: calc(50% - 350px);
 	}
 	.play .title span:after {
-		content: ' "';
+		content: '"';
 	}
 }
