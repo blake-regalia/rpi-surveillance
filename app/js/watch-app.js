@@ -95,7 +95,7 @@ $(document).ready(function() {
 				else {
 
 					// matching prefix `2014-07-28_21-19-07_03` 10 matches same day
-					var s_match_prefix = s_movie.substr(0, 10);
+					var s_match_prefix = s_movie.substr(0, 14);
 					var s_match_suffix = s_movie.substr(20, 2);
 
 					// keep best / better matches
@@ -119,7 +119,7 @@ $(document).ready(function() {
 							a_good_match.push(s_image);
 
 							// best match?
-							if(s_image.substr(0, 10) == s_match_prefix) {
+							if(s_image.substr(0, 14) == s_match_prefix) {
 								s_best_match = s_image;
 								break;
 							}
