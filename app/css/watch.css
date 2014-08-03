@@ -1,6 +1,8 @@
 body {
 	margin: 1em;
 	background-color: black;
+	font-family: monospace;
+	color: white;
 	width: 400px;
 }
 
@@ -16,11 +18,9 @@ body {
 
 	text-align: center;
 	margin-top: 1em;
-	color: white;
 	background-color: rgba(255,255,255,0.2);
 	padding: 1em 0;
 	border-radius: 1em 1em 0em 0em;
-	font-family: monospace;
 	border: 1px solid white;
 	border-bottom-width: 0;
 }
@@ -40,8 +40,14 @@ body {
 	right: 2em;
 	color: orange;
 }
-.play .title span:after {
+.play .title * {
+	font-style: normal;
+}
+.seconds:after {
 	content: " seconds";
+}
+.minutes:after {
+	content: " min";
 }
 
 
@@ -50,7 +56,6 @@ body {
 	text-align: center;
 	width: 100%;
 	padding: 1em 2em;
-	color: white;
 }
 
 
@@ -61,7 +66,10 @@ body {
 		font-size: 20pt;
 		margin-left: calc(50% - 350px);
 	}
-	.play .title span:after {
+	.seconds:after {
 		content: '"';
+	}
+	.minutes:after {
+		content: "'";
 	}
 }

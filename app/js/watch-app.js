@@ -199,10 +199,12 @@ $(document).ready(function() {
 					$('.play').each(function() {
 						var movie = $(this).attr('data-movie');
 						if(json[movie]) {
-							var n_duration = Math.round(json[movie] / T_SECONDS);
-							var s_duration = n_duration;
-							if(n_duration >= 60) s_duration = Math.floor(n_duration / T_MINUTES)+' min '+(n_duration%T_MINUTES);
-							$('<span data-debug="'+json[movie]+'">'+s_duration+'</span>').appendTo($(this).find('.title'));
+							var n_duration_sec = Math.round(json[movie] / T_SECONDS);
+							if(n_duration_sec >= 60) {
+								n_duration_min = Math.floor(n_duration_sec / T_MINUTES);
+								n_duration_sec = n_duration % T_MINUTES;
+							}
+							$('<span><em class="seconds">'+n_duration_sec+'</em><em class="minutes">'+n_duration_min+'</em></span>').appendTo($(this).find('.title'));
 						}
 					});
 				},

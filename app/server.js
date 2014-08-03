@@ -739,6 +739,7 @@ app.get('/captured', function(req, res, next) {
 
 	app.post('/durations', function(req, res, next) {
 		var a_movies = req.body['movies[]'];
+		if(!a_movies) return res.send({error:'no duration files'});
 		var h_durations = {};
 		for(var i=0; i<a_movies.length; i++) {
 			var s_movie = a_movies[i];
@@ -801,8 +802,11 @@ app.get('/captured', function(req, res, next) {
 						// assume it is the earliest one
 						s_earliest_avi = s_basename;
 					}
+					// the video is actually busy...
 					else if(s_ext == 'busy' && s_earliest_avi){
-						
+
+						// continue
+						s_earliest_avi = false;
 					}
 					// encountered a movie
 					else if(s_ext == 'mp4' && s_earliest_avi) {
