@@ -200,14 +200,24 @@ $(document).ready(function() {
 						var movie = $(this).attr('data-movie');
 						var n_duration_ms = parseInt(json[movie]);
 						if(n_duration_ms) {
-							console.log(n_duration_ms);
-							console.log($(this).find('.title'));
+
+							// prepare an html string for the duration
+							var g_duration = '';
+
+							// round the milliseconds into seconds
 							var n_duration_sec = Math.round(n_duration_ms / T_SECONDS);
+
+							// requires minutes
 							if(n_duration_sec >= 60) {
-								n_duration_min = Math.floor(n_duration_sec / T_MINUTES);
+								g_duration += '<em class="minutes">'+Math.floor(n_duration_sec / T_MINUTES)+'</em>';
 								n_duration_sec = n_duration % T_MINUTES;
 							}
-							$('<span><em class="seconds">'+n_duration_sec+'</em><em class="minutes">'+n_duration_min+'</em></span>').appendTo($(this).find('.title'));
+
+							// append seconds html
+							g_duration += '<em class="seconds">'+n_duration_sec+'</em>';
+
+							// construct element
+							$('<span>'+g_duration+'</span>').appendTo($(this).find('.title'));
 						}
 					});
 				},
