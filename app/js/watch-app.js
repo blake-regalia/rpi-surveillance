@@ -198,8 +198,11 @@ $(document).ready(function() {
 				success: function(json) {
 					$('.play').each(function() {
 						var movie = $(this).attr('data-movie');
-						if(json[movie]) {
-							var n_duration_sec = Math.round(json[movie] / T_SECONDS);
+						var n_duration_ms = parseInt(json[movie]);
+						if(n_duration_ms) {
+							console.log(n_duration_ms);
+							console.log($(this).find('.title'));
+							var n_duration_sec = Math.round(n_duration_ms / T_SECONDS);
 							if(n_duration_sec >= 60) {
 								n_duration_min = Math.floor(n_duration_sec / T_MINUTES);
 								n_duration_sec = n_duration % T_MINUTES;
