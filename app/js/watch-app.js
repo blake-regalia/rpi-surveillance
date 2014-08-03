@@ -167,7 +167,9 @@ $(document).ready(function() {
 				// finally, create a playable thumbnail
 				var r_event = ''
 					+'<div class="play" data-movie="'+s_movie+'">'
-						+'<div class="title">'+s_date+'</div>'
+						+'<div class="title">'
+							+'<i>'+s_date+'</i>'
+						+'</div>'
 						+'<img src="loading.png" data-src="'+s_thumbnail+'">'
 						+'<video preload="none" controls>'
 							+'<source src="/watch/'+s_movie+'" type="video/mp4">'
