@@ -178,6 +178,12 @@ $(document).ready(function() {
 				r_page += r_event;
 			}
 
+			// there are no videos!
+			if(!r_page.length) {
+				return $('<div class="no-videos">There are no recorded videos ready at this time. Check back later</div>')
+					.appendTo(document.body);
+			}
+
 			// build the page all at once
 			$(r_page).appendTo(document.body);
 
