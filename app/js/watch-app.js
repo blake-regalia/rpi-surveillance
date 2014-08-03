@@ -211,8 +211,8 @@ $(document).ready(function() {
 
 							// requires minutes
 							if(n_duration_sec >= 60) {
-								g_duration += '<em class="minutes">'+Math.floor(n_duration_sec / T_MINUTES)+'</em>';
-								n_duration_sec = n_duration_sec % T_MINUTES;
+								g_duration += '<em class="minutes">'+Math.floor(n_duration_sec / 60)+'</em>';
+								n_duration_sec = n_duration_sec % 60;
 							}
 
 							// append seconds html
