@@ -844,7 +844,7 @@ app.get('/captured', function(req, res, next) {
 						var s_seconds = m_duration[3];
 						var s_centiseconds = m_duration[4];
 
-						var n_milliseconds = parseInt(s_centiseconds)*100
+						var n_milliseconds = parseInt(s_centiseconds)*10
 							+parseInt(s_seconds)*T_SECONDS
 							+parseInt(s_minutes)*T_MINUTES
 							+parseInt(s_hours)*60*T_MINUTES;
