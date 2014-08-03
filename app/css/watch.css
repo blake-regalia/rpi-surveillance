@@ -50,7 +50,7 @@ body {
 	content: " seconds";
 }
 .minutes:after {
-	content: " min";
+	content: " min ";
 }
 
 
