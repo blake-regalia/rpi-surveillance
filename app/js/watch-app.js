@@ -190,40 +190,42 @@ $(document).ready(function() {
 			$(r_page).appendTo(document.body);
 
 			// query for durations of all videos
-			$.ajax({
-				url: '/durations',
-				type: 'POST',
-				dataType: 'json',
-				data: {
-					movies: a_file_movies
-				},
-				success: function(json) {
-					$('.play').each(function() {
-						var movie = $(this).attr('data-movie');
-						var n_duration_ms = parseInt(json[movie]);
-						if(n_duration_ms) {
+			for(var i_slice_begin=0; i_slice_begin<a_file_movies.length; i_slice_begin+=N_MAX_REQUEST_OBJS) {
+				$.ajax({
+					url: '/durations',
+					type: 'POST',
+					dataType: 'json',
+					data: {
+						movies: a_file_movies.slice(i_slice_begin, i_slice_begin+N_MAX_REQUEST_OBJS),
+					},
+					success: function(json) {
+						$('.play').each(function() {
+							var movie = $(this).attr('data-movie');
+							var n_duration_ms = parseInt(json[movie]);
+							if(n_duration_ms) {
 
-							// prepare an html string for the duration
-							var g_duration = '';
+								// prepare an html string for the duration
+								var g_duration = '';
 
-							// round the milliseconds into seconds
-							var n_duration_sec = Math.round(n_duration_ms / T_SECONDS);
+								// round the milliseconds into seconds
+								var n_duration_sec = Math.round(n_duration_ms / T_SECONDS);
 
-							// requires minutes
-							if(n_duration_sec >= 60) {
-								g_duration += '<em class="minutes">'+Math.floor(n_duration_sec / 60)+'</em>';
-								n_duration_sec = n_duration_sec % 60;
+								// requires minutes
+								if(n_duration_sec >= 60) {
+									g_duration += '<em class="minutes">'+Math.floor(n_duration_sec / 60)+'</em>';
+									n_duration_sec = n_duration_sec % 60;
+								}
+
+								// append seconds html
+								g_duration += '<em class="seconds">'+n_duration_sec+'</em>';
+
+								// construct element
+								$('<span>'+g_duration+'</span>').appendTo($(this).find('.title'));
 							}
-
-							// append seconds html
-							g_duration += '<em class="seconds">'+n_duration_sec+'</em>';
-
-							// construct element
-							$('<span>'+g_duration+'</span>').appendTo($(this).find('.title'));
-						}
-					});
-				},
-			});
+						});
+					},
+				});
+			}
 
 
 			// bind event listeners
