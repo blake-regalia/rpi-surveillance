@@ -739,14 +739,14 @@ app.get('/captured', function(req, res, next) {
 
 	app.post('/durations', function(req, res, next) {
 		var a_movies = req.body['movies[]'];
+		console.log(a_movies.length+' movie durations requested');
 		if(!a_movies) return res.send({error:'no duration files'});
 		var h_durations = {};
 		for(var i=0; i<a_movies.length; i++) {
 			var s_movie = a_movies[i];
-			console.log(s_movie.substr(0, s_movie.length-4));
+			// console.log(s_movie.substr(0, s_movie.length-4));
 			h_durations[s_movie] = fs.readFileSync(CAPTURE_DIR+'/'+s_movie.substr(0, s_movie.length-4)+'.duration', {encoding:'utf8'});
 		}
-		console.log(h_durations);
 		res.send(h_durations);
 	});
 
