@@ -832,7 +832,8 @@ app.get('/captured', function(req, res, next) {
 			if(s_earliest_avi) {
 
 				// create a file that tells this is converting
-				fs.open(CAPTURE_DIR+'/'+s_earliest_avi+'.busy', 'w', function(){});
+				var fd_busy = fs.openSync(CAPTURE_DIR+'/'+s_earliest_avi+'.busy', 'w');
+				fs.closeSync(fd_busy);
 
 				console.log('converting "'+s_earliest_avi+'"...');
 				exec('avconv -i '+CAPTURE_DIR+'/'+s_earliest_avi+'.avi -c:v libx264 -preset veryfast -crf 28 -an -y '+CAPTURE_DIR+'/'+s_earliest_avi+'.mp4', function(err, stdout, stderr) {
@@ -863,7 +864,7 @@ app.get('/captured', function(req, res, next) {
 						fs.unlink(CAPTURE_DIR+'/'+s_earliest_avi+'.busy', function(){});
 
 						// immediately attempt processing the next video
-						return setTimeout(convert_next, 0);
+						return setImmediate(convert_next);
 					}
 
 					// no matter what
