@@ -20,6 +20,9 @@ $(document).ready(function() {
 	var T_SECONDS = 1000;
 	var T_MINUTES = 60*T_SECONDS;
 
+	// constants
+	var N_MAX_REQUEST_OBJS = 1000;
+
 	// file containers
 	var a_file_images = [];
 	var a_file_movies = [];
