@@ -150,10 +150,15 @@ app.get(/^\/(fonts)\/(.*)$/, function(req, res) {
 });
 
 // parse application/x-www-form-urlencoded
-app.use(bodyParser.urlencoded({ extended: false }))
+app.use(bodyParser.urlencoded({
+	extended: false,
+	limit: 5*1024*1024,
+}))
 
 // to support JSON-encoded bodies
-app.use(bodyParser.json());
+app.use(bodyParser.json({
+	limit: 5*1024*1024,
+}));
 
 // establish default response type is json
 app.use(function(req, res, next) {
