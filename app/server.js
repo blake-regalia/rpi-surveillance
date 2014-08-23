@@ -20,7 +20,7 @@ var CAPTURE_DIR = '/home/pi/capture';
 var MOTION_CONF_PATH = '/etc/motion.conf'
 var MOTION_CONF_JSON = __dirname+'/../resource/motion-conf.json';
 
-var S_HOST_IP = os.networkInterfaces().eth0[0].address;
+var S_HOST_IP = '24.32.31.217' || os.networkInterfaces().eth0[0].address;
 var S_PORT_MOTION_STREAM = '8081';
 var S_LOCAL_MOTION_CTRL_PORT = '8080';
 
