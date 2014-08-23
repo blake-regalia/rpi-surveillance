@@ -16,13 +16,13 @@ var bodyParser = require('body-parser')
 var T_SECONDS = 1000;
 var T_MINUTES = 60*T_SECONDS;
 
-var LOCAL_MOTION_CTRL_PORT = '8080';
-
 var CAPTURE_DIR = '/home/pi/capture';
 var MOTION_CONF_PATH = '/etc/motion.conf'
 var MOTION_CONF_JSON = __dirname+'/../resource/motion-conf.json';
 
+var S_HOST_IP = os.networkInterfaces().eth0[0].address;
 var S_PORT_MOTION_STREAM = '8081';
+var S_LOCAL_MOTION_CTRL_PORT = '8080';
 
 var S_RX_TIMESTAMP = '(\\d{4})-(\\d\\d)-(\\d\\d)_(\\d\\d)-(\\d\\d)-(\\d\\d)';
 var RX_AVI = new RegExp('^'+'(\\d\\d)_'+S_RX_TIMESTAMP+'\\.avi$');
@@ -304,7 +304,7 @@ app.use(function(req, res, next) {
 	var check_stream_server = function(f_okay) {
 
 		// make an http get request to the stream server
-		http.get('http://127.0.0.1:'+LOCAL_MOTION_CTRL_PORT+'/', function(res) {
+		http.get('http://127.0.0.1:'+S_LOCAL_MOTION_CTRL_PORT+'/', function(res) {
 
 			console.log('made it!');
 
@@ -372,7 +372,7 @@ app.use(function(req, res, next) {
 				addr: os.hostname(),
 			},
 			stream: {
-				port: '8081',
+				port: S_PORT_MOTION_STREAM,
 			},
 		});
 	};
@@ -460,7 +460,7 @@ app.use(function(req, res, next) {
 
 			// return src info
 			res.send({
-				src: 'http://192.168.1.124:8081/'
+				src: 'http://'+S_HOST_IP+':'+S_PORT_MOTION_STREAM+'/'
 			});
 		}, function(err) {
 
@@ -554,7 +554,7 @@ app.get('/snapshot', function(req, res, next) {
 
 	// make request to local motion server
 	request({
-		url: 'http://localhost:'+LOCAL_MOTION_CTRL_PORT+'/0/action/snapshot',
+		url: 'http://localhost:'+S_LOCAL_MOTION_CTRL_PORT+'/0/action/snapshot',
 		timeout: 1500,
 	}, function(err, ires, body) {
 
